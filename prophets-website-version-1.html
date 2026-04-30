@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Prophets — Gothic Athletic Streetwear for Christ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ─────────────────────────────────────────────
+   ROOT & RESET
+───────────────────────────────────────────── */
+:root {
+  --charcoal:   #0f0f0f;
+  --c2:         #141414;
+  --c3:         #1a1a1a;
+  --c4:         #222;
+  --silver:     #C0C0C0;
+  --silver-dim: #808080;
+  --silver-ghost: #404040;
+  --gold:       #c9a84c;
+  --gold-dim:   #7a6420;
+  --blood:      #8B1A1A;
+  --teal:       #1a4a4a;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--charcoal);
+  color:var(--silver);
+  font-family:'Barlow Condensed',sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cursor{
+  position:fixed;width:8px;height:8px;
+  background:var(--silver);
+  border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transition:transform 0.15s ease,background 0.2s;
+  transform:translate(-50%,-50%);
+}
+#cursor-ring{
+  position:fixed;width:32px;height:32px;
+  border:1px solid #ffffff22;
+  border-radius:50%;
+  pointer-events:none;z-index:9998;
+  transition:transform 0.35s ease,width 0.25s,height 0.25s,border-color 0.25s;
+  transform:translate(-50%,-50%);
+}
+body.cursor-hover #cursor{background:var(--gold);transform:translate(-50%,-50%) scale(1.5);}
+body.cursor-hover #cursor-ring{width:48px;height:48px;border-color:var(--gold)44;}
+
+/* ── NOISE ── */
+#noise{
+  position:fixed;inset:0;z-index:9990;pointer-events:none;opacity:0.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:140px;
+}
+
+/* ── SCROLL PROGRESS ── */
+#progress{
+  position:fixed;top:0;left:0;height:1px;
+  background:linear-gradient(to right,var(--gold),var(--silver));
+  z-index:9997;transition:width 0.1s;width:0%;
+}
+
+/* ── PAGES ── */
+.page{display:none;min-height:100vh;animation:pageFade 0.5s ease;}
+.page.active{display:block;}
+@keyframes pageFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ─────────────────────────────────────────────
+   NAV
+───────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:20px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all 0.4s ease;
+  background:linear-gradient(to bottom,rgba(15,15,15,0.95),transparent);
+}
+nav.scrolled{
+  padding:12px 48px;
+  background:rgba(10,10,10,0.97);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid #1a1a1a;
+}
+.nav-logo{
+  font-family:'UnifrakturMaguntia',cursive;
+  font-size:28px;color:var(--silver);
+  cursor:pointer;
+  text-shadow:0 0 40px rgba(192,192,192,0.1);
+  transition:text-shadow 0.3s;
+  animation:flicker 10s infinite 3s;
+}
+.nav-logo:hover{text-shadow:0 0 60px rgba(192,192,192,0.25);}
+@keyframes flicker{0%,89%,91%,93%,100%{opacity:1}90%,92%{opacity:0.6}}
+
+.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-link{
+  font-size:11px;font-weight:600;letter-spacing:0.28em;
+  text-transform:uppercase;color:var(--silver-ghost);
+  cursor:pointer;position:relative;transition:color 0.25s;
+  text-decoration:none;
+}
+.nav-link::after{
+  content:'';position:absolute;bottom:-3px;left:0;
+  width:0;height:1px;background:var(--gold);
+  transition:width 0.3s ease;
+}
+.nav-link:hover,.nav-link.active{color:var(--silver);}
+.nav-link:hover::after,.nav-link.active::after{width:100%;}
+
+.nav-right{display:flex;align-items:center;gap:24px;}
+.cart-btn{
+  font-size:11px;font-weight:600;letter-spacing:0.2em;
+  color:var(--silver-ghost);cursor:pointer;transition:color 0.2s;
+  display:flex;align-items:center;gap:6px;background:none;border:none;
+}
+.cart-btn:hover{color:var(--silver);}
+.cart-count{
+  background:var(--gold);color:var(--charcoal);
+  width:16px;height:16px;border-radius:50%;
+  font-size:9px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ─────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────── */
+#hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:0 24px;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 40%,#1a1208 0%,transparent 65%),
+             radial-gradient(ellipse 40% 40% at 80% 20%,#0a0f0f 0%,transparent 60%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(#1a1a1a 1px,transparent 1px),linear-gradient(90deg,#1a1a1a 1px,transparent 1px);
+  background-size:60px 60px;
+  opacity:0.15;
+  mask-image:radial-gradient(ellipse 60% 60% at 50% 50%,black 20%,transparent 70%);
+}
+/* Rain */
+.rain-wrap{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.rain-drop{
+  position:absolute;top:-120px;
+  background:linear-gradient(to bottom,transparent,var(--silver));
+  border-radius:0 0 2px 2px;
+  animation:rainfall linear infinite;
+}
+@keyframes rainfall{
+  0%{transform:translateY(0) skewX(-5deg);opacity:0}
+  8%{opacity:1}
+  92%{opacity:1}
+  100%{transform:translateY(110vh) skewX(-5deg);opacity:0}
+}
+/* Cross watermark */
+.hero-cross{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  opacity:0.03;pointer-events:none;
+}
+.hero-eyebrow{
+  font-size:10px;letter-spacing:0.5em;color:var(--gold);
+  text-transform:uppercase;margin-bottom:28px;
+  animation:revealUp 1s ease 0.2s both;
+}
+.hero-title{
+  font-family:'UnifrakturMaguntia',cursive;
+  font-size:clamp(80px,18vw,220px);
+  line-height:0.9;color:var(--silver);
+  text-shadow:0 0 120px rgba(192,192,192,0.06);
+  animation:revealUp 1s ease 0.4s both;
+  animation:flicker 14s infinite 5s, revealUp 1s ease 0.4s both;
+}
+.hero-sub{
+  font-family:'Crimson Text',serif;
+  font-size:clamp(15px,2vw,20px);
+  font-style:italic;color:#484848;
+  max-width:480px;line-height:1.8;
+  margin:28px auto 0;
+  animation:revealUp 1s ease 0.6s both;
+}
+.hero-ctas{
+  display:flex;gap:16px;align-items:center;
+  margin-top:48px;flex-wrap:wrap;justify-content:center;
+  animation:revealUp 1s ease 0.8s both;
+}
+.btn-primary{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;letter-spacing:0.28em;font-size:12px;
+  background:var(--silver);color:var(--charcoal);
+  border:none;padding:15px 40px;cursor:pointer;
+  transition:background 0.2s,transform 0.15s,letter-spacing 0.2s;
+  text-transform:uppercase;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.btn-primary:hover{background:#fff;letter-spacing:0.35em;transform:scale(1.03);}
+.btn-ghost-text{
+  font-size:11px;letter-spacing:0.22em;
+  color:#404040;cursor:pointer;
+  transition:color 0.2s;background:none;border:none;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;
+  text-transform:uppercase;
+}
+.btn-ghost-text:hover{color:var(--silver-dim);}
+.hero-verse{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:13px;color:#282828;margin-top:60px;
+  animation:revealUp 1s ease 1s both;
+}
+.scroll-cue{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:scrollBounce 2.5s ease-in-out infinite;
+}
+.scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,transparent,#282828);}
+.scroll-label{font-size:9px;letter-spacing:0.4em;color:#242424;}
+@keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+@keyframes revealUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+
+/* ── TICKER ── */
+.ticker{
+  border-top:1px solid #141414;border-bottom:1px solid #141414;
+  padding:13px 0;background:#0a0a0a;overflow:hidden;position:relative;
+}
+.ticker-inner{
+  display:flex;gap:56px;white-space:nowrap;
+  animation:tickerScroll 30s linear infinite;
+}
+@keyframes tickerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{font-size:10px;letter-spacing:0.3em;color:#383838;font-weight:600;}
+.ticker-dot{color:var(--gold);font-size:12px;}
+
+/* ── SECTIONS ── */
+.section{padding:96px 48px;}
+.section-eyebrow{font-size:10px;letter-spacing:0.45em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;display:block;}
+.section-title{
+  font-family:'Cinzel',serif;font-size:clamp(32px,5vw,60px);
+  font-weight:600;color:var(--silver);line-height:1.1;margin-bottom:12px;
+}
+.section-desc{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:17px;color:#484848;line-height:1.8;
+  max-width:540px;margin-bottom:48px;
+}
+.section-divider{height:1px;background:linear-gradient(to right,transparent,#1e1e1e,transparent);margin:0;}
+
+/* ─────────────────────────────────────────────
+   NEW ARRIVALS
+───────────────────────────────────────────── */
+.arrivals-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:40px;flex-wrap:wrap;gap:16px;
+}
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:16px;
+}
+.product-card{
+  background:var(--c2);border:1px solid #1a1a1a;
+  position:relative;overflow:hidden;
+  transition:transform 0.4s ease,box-shadow 0.4s ease,border-color 0.4s ease;
+  cursor:pointer;
+}
+.product-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 32px 80px rgba(0,0,0,0.7),0 0 40px rgba(192,192,192,0.03);
+  border-color:#2a2a2a;
+}
+.product-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--silver-dim),transparent);
+  opacity:0;transition:opacity 0.4s;
+}
+.product-card:hover::before{opacity:1;}
+.card-img{
+  aspect-ratio:3/4;
+  background:radial-gradient(ellipse at 50% 40%,#1c1c1c 0%,#0c0c0c 100%);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  border-bottom:1px solid #141414;
+}
+.card-img-icon{
+  font-size:80px;color:#161616;
+  transition:transform 0.5s ease,color 0.4s;
+  font-family:monospace;
+}
+.product-card:hover .card-img-icon{color:#1e1e1e;transform:scale(1.1);}
+.card-cross{
+  position:absolute;bottom:14px;right:14px;
+  opacity:0.06;transition:opacity 0.4s;
+}
+.product-card:hover .card-cross{opacity:0.2;}
+.card-rain{
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(175deg,transparent 0px,transparent 3px,rgba(192,192,192,0.008) 3px,rgba(192,192,192,0.008) 4px);
+  opacity:0;transition:opacity 0.4s;
+}
+.product-card:hover .card-rain{opacity:1;}
+.card-tag{
+  position:absolute;top:14px;left:14px;
+  font-size:9px;letter-spacing:0.22em;font-weight:700;
+  padding:3px 8px;font-family:'Barlow Condensed',sans-serif;
+}
+.tag-prophet{background:#1a1a10;color:#9a8a40;border:1px solid #3a3010;}
+.tag-limited{background:#200a0a;color:#9a3030;border:1px solid #4a1010;}
+.tag-new{background:#0d2010;color:#4a9a4a;border:1px solid #1a4a1a;}
+.tag-core{background:#141414;color:#606060;border:1px solid #2a2a2a;}
+.tag-team{background:#0a1020;color:#3060a0;border:1px solid #102040;}
+.card-price{
+  position:absolute;top:14px;right:14px;
+  font-size:20px;font-weight:700;letter-spacing:0.02em;color:var(--silver);
+  font-family:'Barlow Condensed',sans-serif;
+}
+.card-body{padding:18px 16px 20px;background:#111;}
+.card-sub{font-size:9px;letter-spacing:0.2em;color:#383838;margin-bottom:4px;text-transform:uppercase;}
+.card-name{
+  font-family:'UnifrakturMaguntia',cursive;
+  font-size:22px;color:var(--silver);margin-bottom:6px;
+}
+.card-prophetic{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:13px;color:#404040;line-height:1.6;margin-bottom:8px;
+}
+.card-verse{font-size:10px;color:#2a2a2a;font-style:italic;margin-bottom:12px;}
+.card-btn{
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  background:transparent;color:var(--silver-dim);
+  border:1px solid #222;padding:9px 18px;cursor:pointer;
+  transition:all 0.25s;width:100%;
+  clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);
+}
+.card-btn:hover{border-color:var(--silver-dim);color:var(--silver);background:#ffffff08;}
+.card-bottom-accent{
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,transparent,var(--silver-dim),transparent);
+  opacity:0;transition:opacity 0.4s;
+}
+.product-card:hover .card-bottom-accent{opacity:0.6;}
+
+/* ─────────────────────────────────────────────
+   MISSION
+───────────────────────────────────────────── */
+#mission{
+  background:linear-gradient(180deg,#0a0a0a 0%,#0d0b07 50%,#0a0a0a 100%);
+  border-top:1px solid #141414;
+}
+.mission-layout{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  align-items:center;max-width:1100px;margin:0 auto;
+}
+.mission-pillars{display:flex;flex-direction:column;gap:12px;}
+.pillar{
+  background:#0e0e0e;border:1px solid #1a1a1a;
+  border-left:2px solid #222;padding:22px 20px;
+  transition:border-left-color 0.3s,transform 0.3s;cursor:default;
+}
+.pillar:hover{border-left-color:var(--silver-ghost);transform:translateX(4px);}
+.pillar-icon{font-size:16px;color:#383838;margin-bottom:10px;font-family:monospace;}
+.pillar-name{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:0.18em;color:var(--silver-dim);
+  text-transform:uppercase;margin-bottom:6px;
+}
+.pillar-body{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:14px;color:#404040;line-height:1.65;
+}
+.pillar-ref{font-size:11px;color:#242424;margin-top:10px;font-style:italic;}
+.mission-quote{
+  background:#0a0a0a;border:1px solid #141414;border-top:2px solid var(--gold-dim);
+  padding:40px 32px;text-align:center;
+}
+.mission-quote blockquote{
+  font-family:'UnifrakturMaguntia',cursive;
+  font-size:clamp(20px,3.5vw,40px);
+  color:#484848;line-height:1.3;margin-bottom:16px;
+}
+.mission-cite{font-size:10px;letter-spacing:0.3em;color:#282828;}
+
+/* ─────────────────────────────────────────────
+   SUMMER SABBATH
+───────────────────────────────────────────── */
+#events{background:#0c0c0c;border-top:1px solid #141414;}
+.sabbath-banner{
+  background:linear-gradient(135deg,#1a1208,#141008);
+  border:1px solid var(--gold-dim);
+  padding:48px 40px;text-align:center;
+  position:relative;overflow:hidden;margin-bottom:40px;
+}
+.sabbath-banner::before{
+  content:'SUMMER SABBATH 2025';
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'UnifrakturMaguntia',cursive;
+  font-size:120px;color:rgba(201,168,76,0.04);
+  white-space:nowrap;pointer-events:none;
+}
+.sabbath-eyebrow{font-size:9px;letter-spacing:0.5em;color:var(--gold-dim);margin-bottom:16px;display:block;}
+.sabbath-title{
+  font-family:'Cinzel',serif;font-size:clamp(28px,5vw,56px);
+  font-weight:700;color:var(--gold);margin-bottom:8px;
+}
+.sabbath-sub{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:18px;color:#5a4a20;margin-bottom:32px;
+}
+.sabbath-meta{
+  display:flex;gap:32px;justify-content:center;margin-bottom:32px;flex-wrap:wrap;
+}
+.sabbath-meta-item{text-align:center;}
+.sabbath-meta-label{font-size:9px;letter-spacing:0.3em;color:#383838;display:block;margin-bottom:4px;}
+.sabbath-meta-val{font-size:16px;font-weight:600;letter-spacing:0.1em;color:#7a6420;}
+
+.events-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;}
+.event-card{
+  background:#111;border:1px solid #1a1a1a;padding:22px;
+  position:relative;overflow:hidden;
+  transition:border-color 0.3s;
+}
+.event-card::before{
+  content:'';position:absolute;top:0;left:0;
+  width:2px;height:100%;background:#1e1e1e;
+  transition:background 0.3s;
+}
+.event-card:hover::before{background:var(--silver-ghost);}
+.event-card:hover{border-color:#2a2a2a;}
+.event-num{font-size:9px;letter-spacing:0.3em;color:#2a2a2a;margin-bottom:8px;}
+.event-title{
+  font-family:'Cinzel',serif;font-size:14px;font-weight:600;
+  color:var(--silver);margin-bottom:10px;
+}
+.event-duties{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.event-duties li{
+  font-size:12px;letter-spacing:0.05em;color:#484848;
+  padding-left:12px;position:relative;
+}
+.event-duties li::before{content:'—';position:absolute;left:0;color:#2a2a2a;}
+.event-ref{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:12px;color:#282828;
+  padding-top:12px;border-top:1px solid #141414;
+}
+
+/* ─────────────────────────────────────────────
+   TESTIMONIALS
+───────────────────────────────────────────── */
+#testimonials{background:#0a0a0a;border-top:1px solid #141414;}
+.testimonial-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;
+}
+.testimonial{
+  background:#111;border:1px solid #1a1a1a;padding:24px;
+  position:relative;transition:border-color 0.3s;
+}
+.testimonial:hover{border-color:#2a2a2a;}
+.testimonial-quote{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:16px;color:#606060;line-height:1.75;margin-bottom:20px;
+}
+.testimonial-author{
+  font-size:10px;letter-spacing:0.25em;color:#383838;
+  border-top:1px solid #141414;padding-top:14px;
+}
+.testimonial-cross{
+  position:absolute;top:16px;right:16px;opacity:0.04;
+  font-family:monospace;font-size:24px;color:var(--silver);
+}
+
+/* ─────────────────────────────────────────────
+   ABOUT / ORG
+───────────────────────────────────────────── */
+#about{background:#0d0d0d;border-top:1px solid #141414;}
+.org-chart{max-width:900px;margin:0 auto;}
+.org-ceo{
+  background:linear-gradient(135deg,#1e1a0e,#141208);
+  border:1px solid var(--gold-dim);border-top:2px solid var(--gold);
+  padding:20px 28px;text-align:center;margin:0 auto 32px;
+  max-width:280px;
+}
+.org-ceo-title{
+  font-family:'Cinzel',serif;font-size:14px;font-weight:600;
+  color:var(--gold);margin-bottom:4px;
+}
+.org-ceo-sub{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:13px;color:var(--gold-dim);
+}
+.org-connector{
+  width:1px;height:32px;background:#222;
+  margin:0 auto;position:relative;
+}
+.org-departments{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+}
+.org-dept{
+  background:#111;border:1px solid #1a1a1a;
+  border-top:2px solid #1e1e1e;padding:16px;
+}
+.org-dept.creative{border-top-color:var(--gold-dim);}
+.org-dept.ops{border-top-color:var(--silver-ghost);}
+.org-dept.community{border-top-color:var(--teal);}
+.org-dept-name{
+  font-size:9px;letter-spacing:0.3em;color:#484848;
+  margin-bottom:14px;text-transform:uppercase;
+}
+.org-members{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.org-member{
+  background:var(--c2);border:1px solid #1e1e1e;
+  padding:8px 10px;
+}
+.org-member-name{
+  font-size:12px;font-weight:600;letter-spacing:0.1em;
+  color:var(--silver-dim);margin-bottom:2px;
+}
+.org-member-role{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:11px;color:#383838;
+}
+.servant-section{margin-top:48px;}
+.servant-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;
+}
+.servant-card{
+  background:#0e0e0e;border:1px solid #1a1a1a;
+  border-left:2px solid #1e1e1e;padding:18px;
+  transition:border-left-color 0.3s,transform 0.3s;cursor:default;
+}
+.servant-card:hover{border-left-color:var(--silver-ghost);transform:translateX(4px);}
+.servant-icon{font-size:18px;color:#303030;margin-bottom:10px;font-family:monospace;}
+.servant-name{
+  font-family:'Cinzel',serif;font-size:12px;font-weight:600;
+  color:var(--silver-dim);margin-bottom:6px;
+}
+.servant-body{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:13px;color:#383838;line-height:1.6;
+}
+.servant-verse{font-size:10px;color:#242424;margin-top:8px;}
+
+/* ─────────────────────────────────────────────
+   VERSE BANNER
+───────────────────────────────────────────── */
+.verse-banner{
+  padding:80px 48px;text-align:center;
+  background:#0a0a0a;border-top:1px solid #141414;
+  border-bottom:1px solid #141414;position:relative;overflow:hidden;
+}
+.verse-banner::before{
+  content:'✦';
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-size:300px;color:rgba(192,192,192,0.015);
+  pointer-events:none;font-family:monospace;
+}
+.verse-eyebrow{font-size:10px;letter-spacing:0.45em;color:var(--gold-dim);display:block;margin-bottom:24px;}
+.verse-text{
+  font-family:'UnifrakturMaguntia',cursive;
+  font-size:clamp(20px,4vw,52px);
+  color:#484848;max-width:800px;margin:0 auto;
+  line-height:1.3;
+}
+.verse-ref{
+  display:block;margin-top:20px;
+  font-size:11px;letter-spacing:0.3em;color:#242424;
+}
+
+/* ─────────────────────────────────────────────
+   PRODUCT DETAIL VIEW (modal-style)
+───────────────────────────────────────────── */
+#product-modal{
+  display:none;
+  position:fixed;inset:0;z-index:800;
+  background:rgba(5,5,5,0.97);
+  overflow-y:auto;
+  animation:modalIn 0.4s ease;
+}
+#product-modal.open{display:block;}
+@keyframes modalIn{from{opacity:0}to{opacity:1}}
+.modal-inner{
+  max-width:960px;margin:0 auto;
+  padding:120px 48px 80px;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;
+  align-items:start;
+}
+.modal-close{
+  position:fixed;top:24px;right:36px;
+  background:none;border:none;cursor:pointer;
+  font-size:11px;letter-spacing:0.25em;color:var(--silver-ghost);
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;
+  text-transform:uppercase;transition:color 0.2s;
+  display:flex;align-items:center;gap:8px;
+  z-index:801;
+}
+.modal-close::before{content:'✕';font-size:14px;}
+.modal-close:hover{color:var(--silver);}
+.modal-img{
+  aspect-ratio:3/4;
+  background:radial-gradient(ellipse at 50% 40%,#1c1c1c 0%,#0a0a0a 100%);
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid #1a1a1a;position:relative;overflow:hidden;
+}
+.modal-img-icon{font-size:100px;color:#161616;font-family:monospace;}
+.modal-eyebrow{font-size:9px;letter-spacing:0.3em;color:#383838;margin-bottom:8px;}
+.modal-name{
+  font-family:'UnifrakturMaguntia',cursive;
+  font-size:48px;color:var(--silver);line-height:1;margin-bottom:6px;
+}
+.modal-price{font-size:28px;font-weight:700;color:var(--silver);letter-spacing:0.05em;margin-bottom:24px;}
+.prophetic-box{
+  background:#0a0a0a;border:1px solid #141414;
+  border-left:2px solid var(--gold-dim);
+  padding:18px;margin-bottom:24px;
+}
+.prophetic-label{font-size:9px;letter-spacing:0.3em;color:var(--gold-dim);margin-bottom:8px;}
+.prophetic-text{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:15px;color:#606060;line-height:1.75;
+}
+.prophetic-verse{font-size:11px;color:#2a2a2a;margin-top:10px;font-style:italic;}
+.size-label{font-size:10px;letter-spacing:0.25em;color:#484848;margin-bottom:10px;text-transform:uppercase;}
+.size-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:24px;}
+.size-opt{
+  background:#141414;border:1px solid #1e1e1e;
+  padding:8px;text-align:center;font-size:11px;letter-spacing:0.1em;
+  color:#606060;cursor:pointer;transition:all 0.2s;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;
+}
+.size-opt:hover,.size-opt.active{border-color:var(--silver);color:var(--silver);}
+.size-opt.oos{color:#222;border-color:#141414;cursor:not-allowed;}
+.color-label{font-size:10px;letter-spacing:0.25em;color:#484848;margin-bottom:10px;text-transform:uppercase;}
+.color-swatches{display:flex;gap:10px;margin-bottom:24px;}
+.swatch{
+  width:28px;height:28px;border:1px solid #2a2a2a;
+  cursor:pointer;transition:border-color 0.2s;
+}
+.swatch.active{border-color:var(--silver);}
+.add-btn{
+  width:100%;background:var(--silver);color:var(--charcoal);
+  border:none;padding:16px;font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:13px;letter-spacing:0.28em;text-transform:uppercase;
+  cursor:pointer;transition:background 0.2s,transform 0.15s;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+  margin-bottom:12px;
+}
+.add-btn:hover{background:#fff;}
+.modal-specs{margin-top:24px;}
+.specs-title{font-size:10px;letter-spacing:0.25em;color:#383838;margin-bottom:10px;text-transform:uppercase;}
+.specs-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.specs-list li{font-size:12px;color:#484848;padding-left:12px;position:relative;}
+.specs-list li::before{content:'·';position:absolute;left:0;color:var(--gold-dim);}
+.mission-note{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:12px;color:#282828;text-align:center;
+}
+
+/* ─────────────────────────────────────────────
+   CART DRAWER
+───────────────────────────────────────────── */
+#cart-drawer{
+  position:fixed;right:-420px;top:0;bottom:0;
+  width:400px;background:#0f0f0f;
+  border-left:1px solid #1a1a1a;
+  z-index:600;transition:right 0.4s ease;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+#cart-drawer.open{right:0;}
+.cart-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.8);
+  z-index:599;display:none;backdrop-filter:blur(4px);
+}
+.cart-overlay.open{display:block;}
+.cart-header{
+  padding:28px 24px 20px;
+  border-bottom:1px solid #1a1a1a;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.cart-title{
+  font-family:'Cinzel',serif;font-size:16px;font-weight:600;color:var(--silver);
+}
+.cart-x{background:none;border:none;cursor:pointer;color:var(--silver-ghost);font-size:18px;transition:color 0.2s;}
+.cart-x:hover{color:var(--silver);}
+.cart-items{flex:1;overflow-y:auto;padding:16px 24px;}
+.cart-items::-webkit-scrollbar{width:3px;}
+.cart-items::-webkit-scrollbar-thumb{background:#2a2a2a;}
+.cart-empty{
+  text-align:center;padding:60px 20px;
+  font-family:'Crimson Text',serif;font-style:italic;
+  color:#383838;font-size:16px;
+}
+.cart-item{
+  display:grid;grid-template-columns:80px 1fr auto;gap:14px;
+  padding:16px 0;border-bottom:1px solid #141414;align-items:start;
+}
+.cart-item-img{
+  aspect-ratio:3/4;background:#141414;border:1px solid #1a1a1a;
+  display:flex;align-items:center;justify-content:center;
+  font-family:monospace;font-size:24px;color:#202020;
+}
+.cart-item-name{
+  font-family:'UnifrakturMaguntia',cursive;font-size:18px;color:var(--silver);
+  margin-bottom:3px;
+}
+.cart-item-meta{font-size:11px;color:#484848;letter-spacing:0.08em;}
+.cart-item-price{font-size:14px;font-weight:600;color:var(--silver-dim);}
+.cart-item-remove{
+  background:none;border:none;cursor:pointer;
+  color:#2a2a2a;font-size:16px;margin-top:2px;
+  transition:color 0.2s;display:block;
+}
+.cart-item-remove:hover{color:var(--blood);}
+.cart-footer{
+  padding:20px 24px;border-top:1px solid #1a1a1a;
+  background:#0a0a0a;
+}
+.cart-total-row{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:16px;
+}
+.cart-total-label{font-size:11px;letter-spacing:0.2em;color:#484848;}
+.cart-total-val{font-size:22px;font-weight:700;color:var(--silver);}
+.checkout-btn{
+  width:100%;background:var(--silver);color:var(--charcoal);
+  border:none;padding:15px;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:0.28em;text-transform:uppercase;cursor:pointer;
+  transition:background 0.2s;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+  margin-bottom:10px;
+}
+.checkout-btn:hover{background:#fff;}
+.cart-give-note{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:11px;color:#282828;text-align:center;
+}
+
+/* ─────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────── */
+footer{
+  background:#080808;border-top:1px solid #141414;
+  padding:60px 48px 36px;
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;
+  max-width:1100px;margin:0 auto 48px;
+}
+.footer-brand-logo{
+  font-family:'UnifrakturMaguntia',cursive;
+  font-size:24px;color:#484848;margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.footer-brand-body{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:13px;color:#2a2a2a;line-height:1.75;max-width:220px;
+}
+.footer-col-title{
+  font-size:10px;letter-spacing:0.3em;color:#383838;
+  margin-bottom:16px;text-transform:uppercase;
+}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-links li{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:13px;color:#282828;cursor:pointer;transition:color 0.2s;
+}
+.footer-links li:hover{color:var(--silver-ghost);}
+.footer-bottom{
+  border-top:1px solid #141414;padding-top:24px;
+  display:flex;justify-content:space-between;align-items:center;
+  max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:12px;
+}
+.footer-copy{font-size:10px;letter-spacing:0.15em;color:#1e1e1e;}
+.footer-verse{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:11px;color:#1a1a1a;
+}
+
+/* ─────────────────────────────────────────────
+   TOAST NOTIFICATION
+───────────────────────────────────────────── */
+#toast{
+  position:fixed;bottom:32px;left:50%;transform:translateX(-50%);
+  background:#1a1a1a;border:1px solid #2a2a2a;border-left:2px solid var(--gold-dim);
+  padding:14px 24px;font-size:12px;letter-spacing:0.1em;color:var(--silver-dim);
+  z-index:1000;opacity:0;transition:opacity 0.3s;pointer-events:none;
+  white-space:nowrap;
+}
+#toast.show{opacity:1;}
+
+/* ─────────────────────────────────────────────
+   SCROLL REVEAL
+───────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal.revealed{opacity:1;transform:none;}
+.reveal.d1{transition-delay:0.1s;}
+.reveal.d2{transition-delay:0.2s;}
+.reveal.d3{transition-delay:0.3s;}
+.reveal.d4{transition-delay:0.4s;}
+.reveal.d5{transition-delay:0.5s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:16px 24px;}
+  nav.scrolled{padding:12px 24px;}
+  .nav-links{gap:20px;}
+  .section{padding:64px 24px;}
+  .mission-layout{grid-template-columns:1fr;gap:40px;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
+  .org-departments{grid-template-columns:1fr;}
+  .modal-inner{grid-template-columns:1fr;padding:100px 24px 60px;}
+  #cart-drawer{width:100%;right:-100%;}
+}
+@media(max-width:600px){
+  .hero-title{font-size:clamp(60px,20vw,90px);}
+  .nav-links{display:none;}
+  .footer-grid{grid-template-columns:1fr;}
+  .sabbath-meta{gap:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NOISE + PROGRESS -->
+<div id="noise"></div>
+<div id="progress"></div>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <div class="nav-logo" role="button" tabindex="0" aria-label="Go to Home page" onclick="Maps('home', this, event)">Prophets</div>
+  <div class="nav-links">
+    <a class="nav-link active" onclick="Maps('home', this, event)" href="#">Home</a>
+    <a class="nav-link" onclick="Maps('shop', this, event)" href="#">Collection</a>
+    <a class="nav-link" onclick="Maps('vision', this, event)" href="#">The Vision</a>
+    <a class="nav-link" onclick="Maps('events', this, event)" href="#">Community</a>
+    <a class="nav-link" onclick="Maps('about', this, event)" href="#">The Watchmen</a>
+  </div>
+  <div class="nav-right">
+    <button class="cart-btn" id="cart-toggle-btn" aria-label="Toggle cart drawer" aria-controls="cart-drawer" aria-expanded="false" onclick="toggleCart()">
+      Watch
+      <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─────────────────────────────────────────────
+     HOME PAGE
+───────────────────────────────────────────── -->
+<div id="page-home" class="page active">
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="rain-wrap" id="rain-wrap"></div>
+    <svg class="hero-cross" width="120" height="160" viewBox="0 0 120 160" fill="none">
+      <rect x="50" y="0" width="20" height="160" fill="white"/>
+      <rect x="0" y="45" width="120" height="20" fill="white"/>
+    </svg>
+    <span class="hero-eyebrow">Servant Leadership · Gothic Athletic Streetwear · For Christ</span>
+    <h1 class="hero-title">Prophets</h1>
+    <p class="hero-sub">Outerwear forged in the fire. Worn by those who stand on the wall and refuse to be silent.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="Maps('shop', this, event)">Enter the Arsenal</button>
+      <button class="btn-ghost-text" onclick="Maps('vision', this, event)">The Vision →</button>
+    </div>
+    <p class="hero-verse">"I have posted watchmen on your walls, O Jerusalem." — Isaiah 62:6</p>
+    <div class="scroll-cue">
+      <div class="scroll-line"></div>
+      <span class="scroll-label">Descend</span>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner" id="ticker-inner"></div>
+  </div>
+
+  <!-- NEW ARRIVALS -->
+  <section class="section" style="background:#0e0e0e;">
+    <div class="arrivals-header">
+      <div>
+        <span class="section-eyebrow reveal">New Arrivals</span>
+        <h2 class="section-title reveal d1">The Arsenal</h2>
+        <p class="section-desc reveal d2">Each piece carries a word. Every thread a testimony.</p>
+      </div>
+      <button class="btn-ghost-text reveal" onclick="Maps('shop', this, event)" style="align-self:flex-end;padding-bottom:4px;">View All →</button>
+    </div>
+    <div class="product-grid" id="home-products"></div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- MISSION PREVIEW -->
+  <section class="section" style="background:linear-gradient(180deg,#0a0a0a,#0d0b07 50%,#0a0a0a);border-top:1px solid #141414;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;" class="mission-layout">
+        <div>
+          <span class="section-eyebrow reveal">Our Mission</span>
+          <h2 class="section-title reveal d1">Clothed<br>in the Call</h2>
+          <p class="section-desc reveal d2">Prophets was born in a rainy locker room prayer. We believe God raises up athletes to be voices — on the field, in the weight room, in the stadium. Every piece we make is a garment for the called.</p>
+          <button class="btn-primary reveal d3" onclick="Maps('vision', this, event)">Read the Vision</button>
+        </div>
+        <div class="mission-pillars">
+          <div class="pillar reveal d1">
+            <div class="pillar-icon">⚔</div>
+            <div class="pillar-name">Servant Leadership</div>
+            <div class="pillar-body">The greatest among you shall be your servant. We build gear for those who lead by kneeling first.</div>
+            <div class="pillar-ref">Mark 10:45</div>
+          </div>
+          <div class="pillar reveal d2">
+            <div class="pillar-icon">◈</div>
+            <div class="pillar-name">10% to Missions</div>
+            <div class="pillar-body">Every purchase sends provision to frontline mission work. You train. The Gospel advances.</div>
+            <div class="pillar-ref">Romans 10:15</div>
+          </div>
+          <div class="pillar reveal d3">
+            <div class="pillar-icon">✦</div>
+            <div class="pillar-name">Made to Last</div>
+            <div class="pillar-body">Performance fabrics built for punishment. Like faith under pressure — refined, not broken.</div>
+            <div class="pillar-ref">James 1:3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMMER SABBATH CTA STRIP -->
+  <section class="section" style="background:#0c0c0c;border-top:1px solid #141414;padding-top:0;padding-bottom:0;">
+    <div class="sabbath-banner reveal">
+      <span class="sabbath-eyebrow">Summer Sabbath 2025</span>
+      <div class="sabbath-title">Rest. Compete. Commune.</div>
+      <p class="sabbath-sub">Community Tournament — Where Athletes Encounter God</p>
+      <div class="sabbath-meta">
+        <div class="sabbath-meta-item">
+          <span class="sabbath-meta-label">Date</span>
+          <span class="sabbath-meta-val">August 2025</span>
+        </div>
+        <div class="sabbath-meta-item">
+          <span class="sabbath-meta-label">Location</span>
+          <span class="sabbath-meta-val">Hillsboro, KS</span>
+        </div>
+        <div class="sabbath-meta-item">
+          <span class="sabbath-meta-label">Teams</span>
+          <span class="sabbath-meta-val">Up to 24</span>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="Maps('events', this, event)" style="background:var(--gold);color:var(--charcoal);">Register Your Team</button>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="section">
+    <div style="text-align:center;margin-bottom:48px;">
+      <span class="section-eyebrow reveal">Worn by the Remnant</span>
+      <h2 class="section-title reveal d1">The Watchmen Speak</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial reveal d1">
+        <div class="testimonial-cross">✦</div>
+        <p class="testimonial-quote">"Wore The Mantle every pre-dawn practice this winter. The verse on the inside tag hits different when it's 5am and you're the only one at the field."</p>
+        <div class="testimonial-author">— MARCUS T. · LINEBACKER · KANSAS CITY</div>
+      </div>
+      <div class="testimonial reveal d2">
+        <div class="testimonial-cross">◈</div>
+        <p class="testimonial-quote">"I'm not just wearing a brand. I'm wearing a call. The Watchman Windbreaker is the best piece I own — spiritually and athletically."</p>
+        <div class="testimonial-author">— NAOMI R. · DISTANCE RUNNER · WICHITA</div>
+      </div>
+      <div class="testimonial reveal d3">
+        <div class="testimonial-cross">◉</div>
+        <p class="testimonial-quote">"Ordered Iron Pillar jackets for the whole team. The Prophetic Insight copy on each item sparked a devotional series we ran all season."</p>
+        <div class="testimonial-author">— COACH ELIJAH W. · HEAD COACH · HILLSBORO</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERSE BANNER -->
+  <div class="verse-banner reveal">
+    <span class="verse-eyebrow">The Foundation</span>
+    <div class="verse-text">"Whatever you do, do it heartily, as to the Lord and not to men."</div>
+    <span class="verse-ref">Colossians 3:23</span>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">Prophets</div>
+        <p class="footer-brand-body">Athletic outerwear for the called. Gear for the watchful. Made for those who carry more than a number on their back.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Outerwear</div>
+        <ul class="footer-links">
+          <li onclick="Maps('shop', this, event)">New Arrivals</li>
+          <li onclick="Maps('shop', this, event)">Jackets</li>
+          <li onclick="Maps('shop', this, event)">Hoodies</li>
+          <li onclick="Maps('shop', this, event)">Vests</li>
+          <li onclick="Maps('shop', this, event)">Team Orders</li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Vision</div>
+        <ul class="footer-links">
+          <li onclick="Maps('vision', this, event)">Our Story</li>
+          <li onclick="Maps('vision', this, event)">Give Back</li>
+          <li onclick="Maps('about', this, event)">Ambassadors</li>
+          <li>Prayer Wall</li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Serve</div>
+        <ul class="footer-links">
+          <li>Sizing Guide</li>
+          <li>Shipping</li>
+          <li>Returns</li>
+          <li>Contact</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 PROPHETS OUTERWEAR · ALL RIGHTS RESERVED</span>
+      <span class="footer-verse">"Stand therefore." — Ephesians 6:14</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ─────────────────────────────────────────────
+     SHOP PAGE
+───────────────────────────────────────────── -->
+<div id="page-shop" class="page">
+  <section class="section" style="padding-top:140px;background:#0d0d0d;">
+    <span class="section-eyebrow reveal">The Collection</span>
+    <h1 class="section-title reveal d1">The Arsenal</h1>
+    <p class="section-desc reveal d2">Outerwear with purpose. Each garment carries a scripture. Every thread a testimony.</p>
+
+    <!-- Filter bar -->
+    <div style="display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap;" class="reveal d3">
+      <button class="filter-btn active" onclick="filterProducts('all',this)">All</button>
+      <button class="filter-btn" onclick="filterProducts('jacket',this)">Jackets</button>
+      <button class="filter-btn" onclick="filterProducts('hoodie',this)">Hoodies</button>
+      <button class="filter-btn" onclick="filterProducts('vest',this)">Vests</button>
+      <button class="filter-btn" onclick="filterProducts('zip',this)">Quarter-Zips</button>
+    </div>
+
+    <div class="product-grid" id="shop-products"></div>
+  </section>
+  <div class="verse-banner reveal">
+    <span class="verse-eyebrow">The Foundation</span>
+    <div class="verse-text">"Before I formed you in the womb I knew you, before you were born I set you apart."</div>
+    <span class="verse-ref">Jeremiah 1:5</span>
+  </div>
+  <footer>
+    <div class="footer-bottom" style="max-width:1100px;margin:0 auto;">
+      <span class="footer-copy">© 2025 PROPHETS OUTERWEAR</span>
+      <span class="footer-verse">"Stand therefore." — Ephesians 6:14</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ─────────────────────────────────────────────
+     VISION PAGE
+───────────────────────────────────────────── -->
+<div id="page-vision" class="page">
+  <section class="section" style="padding-top:140px;background:linear-gradient(180deg,#0a0a0a,#0d0b07 50%,#0a0a0a);">
+    <div style="max-width:800px;margin:0 auto;">
+      <span class="section-eyebrow reveal">The Vision</span>
+      <h1 class="section-title reveal d1">Clothed<br>in the Call</h1>
+      <p style="font-family:'Crimson Text',serif;font-style:italic;font-size:20px;color:#606060;line-height:1.85;margin-bottom:48px;" class="reveal d2">
+        Prophets was born in a rainy locker room prayer after a state championship loss. The founder knelt alone on a wet concrete floor, still in full pads, and heard something: <em>"You were set apart before you were formed."</em> That night, a brand was born — not from ambition, but from obedience.
+      </p>
+      <p style="font-family:'Crimson Text',serif;font-style:italic;font-size:18px;color:#484848;line-height:1.85;margin-bottom:48px;" class="reveal d3">
+        We believe athletes are missionaries. Their courts, fields, and tracks are mission fields. The stadium is a pulpit. The locker room is a sanctuary. And the gear you wear is a declaration of whose you are.
+      </p>
+      <div style="border-left:2px solid var(--gold-dim);padding-left:28px;margin-bottom:48px;" class="reveal d4">
+        <p style="font-family:'UnifrakturMaguntia',cursive;font-size:28px;color:#484848;line-height:1.4;margin-bottom:12px;">"Set apart before birth. Unbreakable in the field."</p>
+        <span style="font-size:10px;letter-spacing:0.3em;color:#2a2a2a;">— PROPHETS BRAND MANIFESTO</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="section" style="background:#0c0c0c;border-top:1px solid #141414;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <span class="section-eyebrow reveal">The Pillars</span>
+      <h2 class="section-title reveal d1">Why We Exist</h2>
+      <div class="mission-pillars" style="max-width:600px;">
+        <div class="pillar reveal d1">
+          <div class="pillar-icon">⚔</div>
+          <div class="pillar-name">Servant Leadership</div>
+          <div class="pillar-body">The greatest among you shall be your servant. Every role in our organization, every product we release, every event we host begins with one question: who does this serve? We lead from the bottom, not the top.</div>
+          <div class="pillar-ref">Mark 10:45 — "For even the Son of Man did not come to be served, but to serve."</div>
+        </div>
+        <div class="pillar reveal d2">
+          <div class="pillar-icon">◈</div>
+          <div class="pillar-name">10% to Frontline Missions</div>
+          <div class="pillar-body">Non-negotiable. Every order — regardless of size — sends 10% to verified frontline mission partners. We don't separate commerce from covenant. The harvest funds the harvest.</div>
+          <div class="pillar-ref">Malachi 3:10 — "Bring the whole tithe into the storehouse."</div>
+        </div>
+        <div class="pillar reveal d3">
+          <div class="pillar-icon">✦</div>
+          <div class="pillar-name">The Prophetic Insight</div>
+          <div class="pillar-body">Every garment carries a scripture and a Prophetic Insight — a hand-crafted, faith-based message connecting the physical garment to a spiritual truth. You're not just wearing clothing. You're wearing a word.</div>
+          <div class="pillar-ref">Hebrews 4:12 — "For the word of God is alive and active."</div>
+        </div>
+        <div class="pillar reveal d4">
+          <div class="pillar-icon">⬡</div>
+          <div class="pillar-name">Community & Tournament</div>
+          <div class="pillar-body">Our Summer Sabbath tournaments are mission fields. We hire officials, coordinate games, arrange teams — and infuse every moment with the culture of Servant Leadership. Sports as ministry. Competition as communion.</div>
+          <div class="pillar-ref">Proverbs 27:17 — "Iron sharpens iron, so one man sharpens another."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="verse-banner reveal">
+    <span class="verse-eyebrow">The Foundation</span>
+    <div class="verse-text">"I can do all things through Christ who strengthens me."</div>
+    <span class="verse-ref">Philippians 4:13</span>
+  </div>
+  <footer>
+    <div class="footer-bottom" style="max-width:1100px;margin:0 auto;">
+      <span class="footer-copy">© 2025 PROPHETS OUTERWEAR</span>
+      <span class="footer-verse">"Stand therefore." — Ephesians 6:14</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ─────────────────────────────────────────────
+     EVENTS PAGE
+───────────────────────────────────────────── -->
+<div id="page-events" class="page">
+  <section class="section" style="padding-top:140px;background:#0c0c0c;">
+    <span class="section-eyebrow reveal">Community & Events</span>
+    <h1 class="section-title reveal d1">Summer Sabbath</h1>
+    <div class="sabbath-banner reveal d2">
+      <span class="sabbath-eyebrow">Summer Sabbath 2025</span>
+      <div class="sabbath-title">Rest. Compete. Commune.</div>
+      <p class="sabbath-sub">Community Tournament — Where Athletes Encounter God</p>
+      <div class="sabbath-meta">
+        <div class="sabbath-meta-item">
+          <span class="sabbath-meta-label">Date</span>
+          <span class="sabbath-meta-val">August 2025</span>
+        </div>
+        <div class="sabbath-meta-item">
+          <span class="sabbath-meta-label">Location</span>
+          <span class="sabbath-meta-val">Hillsboro, KS</span>
+        </div>
+        <div class="sabbath-meta-item">
+          <span class="sabbath-meta-label">Teams</span>
+          <span class="sabbath-meta-val">Up to 24</span>
+        </div>
+        <div class="sabbath-meta-item">
+          <span class="sabbath-meta-label">Sports</span>
+          <span class="sabbath-meta-val">Basketball · Flag Football</span>
+        </div>
+      </div>
+      <button class="btn-primary" style="background:var(--gold);color:var(--charcoal);" onclick="showToast('Team registration opens Spring 2025!')">Register Your Team</button>
+    </div>
+  </section>
+
+  <section class="section" style="background:#0a0a0a;border-top:1px solid #141414;">
+    <span class="section-eyebrow reveal">How We Operate</span>
+    <h2 class="section-title reveal d1">Event Coordination</h2>
+    <p class="section-desc reveal d2">Servant Leadership in action. Every detail serves the athlete, the family, and the game.</p>
+    <div class="events-grid">
+      <div class="event-card reveal d1">
+        <div class="event-num">DUTY 01</div>
+        <div class="event-title">Hiring & Officials</div>
+        <ul class="event-duties">
+          <li>Post referee and scorekeeper listings</li>
+          <li>Credential verification for all staff</li>
+          <li>Pay schedules and role assignments</li>
+          <li>Conflict of interest screening</li>
+          <li>Day-of briefing and prayer</li>
+        </ul>
+        <div class="event-ref">"The one who is greatest among you must become like the youngest." — Luke 22:26</div>
+      </div>
+      <div class="event-card reveal d2">
+        <div class="event-num">DUTY 02</div>
+        <div class="event-title">Game Coordination</div>
+        <ul class="event-duties">
+          <li>Single and double elimination brackets</li>
+          <li>Field and court assignments</li>
+          <li>Live score updates via web portal</li>
+          <li>Overtime and tiebreaker rules</li>
+          <li>Injury and incident reporting</li>
+        </ul>
+        <div class="event-ref">"Whatever you do, do it heartily, as to the Lord." — Colossians 3:23</div>
+      </div>
+      <div class="event-card reveal d3">
+        <div class="event-num">DUTY 03</div>
+        <div class="event-title">Team Arrangements</div>
+        <ul class="event-duties">
+          <li>Team registration portal (up to 24 teams)</li>
+          <li>Roster submission and eligibility</li>
+          <li>Jersey conflict resolution</li>
+          <li>Travel team hotel coordination</li>
+          <li>Dietary accommodation tracking</li>
+        </ul>
+        <div class="event-ref">"Iron sharpens iron, so one man sharpens another." — Proverbs 27:17</div>
+      </div>
+      <div class="event-card reveal d4">
+        <div class="event-num">DUTY 04</div>
+        <div class="event-title">Venue & Logistics</div>
+        <ul class="event-duties">
+          <li>Field inspection and safety checklist</li>
+          <li>Equipment inventory management</li>
+          <li>Parking and traffic flow</li>
+          <li>Medical staff and first aid stations</li>
+          <li>Vendor and food coordination</li>
+        </ul>
+        <div class="event-ref">"Commit your plans to the Lord, and they will succeed." — Proverbs 16:3</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="verse-banner reveal">
+    <span class="verse-eyebrow">The Call</span>
+    <div class="verse-text">"Proclaim this among the nations: Consecrate a fast, call a sacred assembly."</div>
+    <span class="verse-ref">Joel 1:14</span>
+  </div>
+  <footer>
+    <div class="footer-bottom" style="max-width:1100px;margin:0 auto;">
+      <span class="footer-copy">© 2025 PROPHETS OUTERWEAR</span>
+      <span class="footer-verse">"Stand therefore." — Ephesians 6:14</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ─────────────────────────────────────────────
+     ABOUT / WATCHMEN PAGE
+───────────────────────────────────────────── -->
+<div id="page-about" class="page">
+  <section id="about" class="section" style="padding-top:140px;">
+    <span class="section-eyebrow reveal">The Watchmen</span>
+    <h1 class="section-title reveal d1">The Organization</h1>
+    <p class="section-desc reveal d2">10–12 roles built on the Servant Leadership model. The greatest serves all.</p>
+
+    <div class="org-chart reveal d3">
+      <div class="org-ceo">
+        <div class="org-ceo-title">Founder · Servant-Leader</div>
+        <div class="org-ceo-sub">Visionary · Strategy · Culture</div>
+      </div>
+      <div class="org-connector"></div>
+      <div class="org-departments">
+        <div class="org-dept creative">
+          <div class="org-dept-name">Creative & Brand</div>
+          <ul class="org-members">
+            <li class="org-member">
+              <div class="org-member-name">Creative Director</div>
+              <div class="org-member-role">Visual identity, lookbooks, campaigns</div>
+            </li>
+            <li class="org-member">
+              <div class="org-member-name">Graphic Designer</div>
+              <div class="org-member-role">Apparel graphics, web assets</div>
+            </li>
+            <li class="org-member">
+              <div class="org-member-name">Copywriter</div>
+              <div class="org-member-role">Prophetic Insight copy, scripture curation</div>
+            </li>
+          </ul>
+        </div>
+        <div class="org-dept ops">
+          <div class="org-dept-name">Operations & Product</div>
+          <ul class="org-members">
+            <li class="org-member">
+              <div class="org-member-name">Operations Lead</div>
+              <div class="org-member-role">Inventory, fulfillment, vendor relations</div>
+            </li>
+            <li class="org-member">
+              <div class="org-member-name">Inventory Coordinator</div>
+              <div class="org-member-role">Stock tracking, reorder triggers</div>
+            </li>
+            <li class="org-member">
+              <div class="org-member-name">Customer Care</div>
+              <div class="org-member-role">Returns, sizing, community support</div>
+            </li>
+          </ul>
+        </div>
+        <div class="org-dept community">
+          <div class="org-dept-name">Community & Events</div>
+          <ul class="org-members">
+            <li class="org-member">
+              <div class="org-member-name">Events Coordinator</div>
+              <div class="org-member-role">Tournament planning, Summer Sabbath</div>
+            </li>
+            <li class="org-member">
+              <div class="org-member-name">Ambassador Lead</div>
+              <div class="org-member-role">Athlete partnerships, campus reps</div>
+            </li>
+            <li class="org-member">
+              <div class="org-member-name">Social Media Manager</div>
+              <div class="org-member-role">Content calendar, community growth</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Servant Leadership -->
+    <div class="servant-section reveal">
+      <span class="section-eyebrow" style="margin-top:48px;display:block;">Servant Leadership Model</span>
+      <h2 class="section-title">How We Lead</h2>
+      <div class="servant-grid">
+        <div class="servant-card">
+          <div class="servant-icon">⬡</div>
+          <div class="servant-name">Serve First</div>
+          <div class="servant-body">Every decision starts with: who does this serve? Customer, community, and Creator — in that order.</div>
+          <div class="servant-verse">Mark 10:45</div>
+        </div>
+        <div class="servant-card">
+          <div class="servant-icon">◈</div>
+          <div class="servant-name">Transparent Authority</div>
+          <div class="servant-body">Leadership is accountable. Financial reports are shared with the team quarterly. No secrets.</div>
+          <div class="servant-verse">Luke 16:10</div>
+        </div>
+        <div class="servant-card">
+          <div class="servant-icon">✦</div>
+          <div class="servant-name">Develop Others</div>
+          <div class="servant-body">Every role has a growth path. We invest in people first, profits follow. We raise the next generation.</div>
+          <div class="servant-verse">2 Timothy 2:2</div>
+        </div>
+        <div class="servant-card">
+          <div class="servant-icon">⚔</div>
+          <div class="servant-name">Missional Profit</div>
+          <div class="servant-body">Revenue is a resource, not the goal. 10% to missions is non-negotiable. The harvest funds the harvest.</div>
+          <div class="servant-verse">Malachi 3:10</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="verse-banner reveal">
+    <span class="verse-eyebrow">The Standard</span>
+    <div class="verse-text">"Not so with you. Instead, whoever wants to become great among you must be your servant."</div>
+    <span class="verse-ref">Matthew 20:26</span>
+  </div>
+  <footer>
+    <div class="footer-bottom" style="max-width:1100px;margin:0 auto;">
+      <span class="footer-copy">© 2025 PROPHETS OUTERWEAR</span>
+      <span class="footer-verse">"Stand therefore." — Ephesians 6:14</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ── PRODUCT MODAL ── -->
+<div id="product-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-name">
+  <button class="modal-close" aria-label="Close product details modal" onclick="closeModal()">Close</button>
+  <div class="modal-inner">
+    <div class="modal-img">
+      <div class="modal-img-icon" id="modal-icon"></div>
+    </div>
+    <div class="modal-detail">
+      <div class="modal-eyebrow" id="modal-sub"></div>
+      <div class="modal-name" id="modal-name"></div>
+      <div class="modal-price" id="modal-price"></div>
+      <div class="prophetic-box">
+        <div class="prophetic-label">Prophetic Insight</div>
+        <div class="prophetic-text" id="modal-prophetic"></div>
+        <div class="prophetic-verse" id="modal-verse"></div>
+      </div>
+      <div class="size-label">Select Size</div>
+      <div class="size-grid">
+        <div class="size-opt" onclick="selectSize(this)">XS</div>
+        <div class="size-opt active" onclick="selectSize(this)">S</div>
+        <div class="size-opt" onclick="selectSize(this)">M</div>
+        <div class="size-opt" onclick="selectSize(this)">L</div>
+        <div class="size-opt" onclick="selectSize(this)">XL</div>
+        <div class="size-opt" onclick="selectSize(this)">2XL</div>
+        <div class="size-opt" onclick="selectSize(this)">3XL</div>
+        <div class="size-opt oos">4XL</div>
+      </div>
+      <div class="color-label">Colorway</div>
+      <div class="color-swatches">
+        <div class="swatch active" style="background:#141414;" title="Midnight" onclick="selectSwatch(this)"></div>
+        <div class="swatch" style="background:#3a3535;" title="Ash" onclick="selectSwatch(this)"></div>
+        <div class="swatch" style="background:#1a1a2a;" title="Obsidian" onclick="selectSwatch(this)"></div>
+        <div class="swatch" style="background:#2a1a0e;" title="Ember" onclick="selectSwatch(this)"></div>
+      </div>
+      <button class="add-btn" onclick="addToCart()">Add to Watch</button>
+      <p class="mission-note">10% of this purchase goes to frontline missions.</p>
+      <div class="modal-specs">
+        <div class="specs-title">Details</div>
+        <ul class="specs-list" id="modal-specs"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CART DRAWER ── -->
+<div class="cart-overlay" id="cart-overlay" aria-hidden="true" onclick="toggleCart()"></div>
+<div id="cart-drawer" role="complementary" aria-label="Shopping cart" aria-hidden="true">
+  <div class="cart-header">
+    <div class="cart-title">The Watch</div>
+    <button class="cart-x" aria-label="Close cart drawer" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items" aria-live="polite">
+    <div class="cart-empty">"Consider the ravens: they neither sow nor reap." <br><br>Your watch is empty.<br>The arsenal awaits.</div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-val" id="cart-total">$0</span>
+    </div>
+    <button class="checkout-btn" onclick="showToast('Checkout coming soon — building in Flask!')">Proceed to Covenant</button>
+    <p class="cart-give-note">10% of your order goes to frontline missions.</p>
+  </div>
+</div>
+
+<!-- Filter buttons style -->
+<style>
+.filter-btn{
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;
+  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  background:transparent;color:#484848;
+  border:1px solid #1e1e1e;padding:8px 18px;cursor:pointer;
+  transition:all 0.2s;
+}
+.filter-btn:hover,.filter-btn.active{border-color:var(--silver-ghost);color:var(--silver);}
+</style>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+/* ─────────────────────────────────────────────
+   DATA
+───────────────────────────────────────────── */
+const products = [
+  {
+    id:1, name:"The Mantle", sub:"Heavyweight Overcoat",
+    price:148, icon:"⚔", tag:"tag-prophet", tagLabel:"Prophet's Choice",
+    category:"jacket",
+    prophetic:"When Elijah threw his mantle over Elisha, it wasn't just cloth — it was commission. This coat carries weight. Wear your call with authority.",
+    verse:"1 Kings 19:19",
+    specs:["100% Wool-blend outer shell","Moisture-wicking interior lining","Verse embroidered inside left chest","Reinforced seams. Athlete-cut.","Free returns within 30 days"]
+  },
+  {
+    id:2, name:"Watchman Windbreaker", sub:"Storm-Ready Shell",
+    price:119, icon:"◈", tag:"tag-limited", tagLabel:"Limited",
+    category:"jacket",
+    prophetic:"God posted you on the wall for a reason. Wind-resistant shell for those stationed in the gap. Weatherproof. Built for the vigil.",
+    verse:"Ezekiel 33:7",
+    specs:["Wind-resistant nylon shell","Sealed taped seams","Reflective cross logo at chest","Packable — fits in side pocket","Drop-shoulder athlete fit"]
+  },
+  {
+    id:3, name:"Sackcloth & Ash Hoodie", sub:"Heavyweight Fleece",
+    price:95, icon:"◉", tag:"tag-core", tagLabel:"Core",
+    category:"hoodie",
+    prophetic:"Mourning the broken. Moving in power. 16oz French terry carries the weight of intercession — and the strength to keep going.",
+    verse:"Joel 2:13",
+    specs:["16oz French terry fleece","Cross embroidery on left cuff","Oversized silhouette","Hidden inner zip pocket","Garment washed for lived-in feel"]
+  },
+  {
+    id:4, name:"Valley of Dry Bones Vest", sub:"Insulated Puffer",
+    price:109, icon:"✦", tag:"tag-new", tagLabel:"New",
+    category:"vest",
+    prophetic:"Can these bones live? Insulated for the field, designed for those who prophesy life into dead places. Breathe on these bones.",
+    verse:"Ezekiel 37:3",
+    specs:["600-fill premium down insulation","Wind-resistant ripstop shell","Double-zip chest pockets","Verse tag at inside hem","Water-repellent finish"]
+  },
+  {
+    id:5, name:"Iron Pillar Track Jacket", sub:"Performance Shell",
+    price:99, icon:"⬡", tag:"tag-team", tagLabel:"Team Orders",
+    category:"jacket",
+    prophetic:"Set apart before birth. Unbreakable in the field. For those who knew their call before the whistle. Performance meets purpose.",
+    verse:"Jeremiah 1:5",
+    specs:["Lightweight performance shell","4-way stretch fabric","Moisture-wicking liner","Full-zip with chin guard","Available for team custom orders"]
+  },
+  {
+    id:6, name:"Remnant Quarter-Zip", sub:"Thermal Mid-Layer",
+    price:85, icon:"◇", tag:"tag-core", tagLabel:"Core",
+    category:"zip",
+    prophetic:"A remnant always remains. Moisture-wicking. 100% faithful. For those who outlast the storm and are still standing at dawn.",
+    verse:"Romans 11:5",
+    specs:["Performance thermal fleece","Quarter-zip mock collar","Thumb holes at cuffs","Flatlock stitching throughout","Slim athletic cut"]
+  },
+];
+
+let cart = [];
+let currentProduct = null;
+let selectedSize = 'S';
+let lastFocusedElement = null;
+
+/* ─────────────────────────────────────────────
+   RAIN
+───────────────────────────────────────────── */
+function buildRain(){
+  const wrap = document.getElementById('rain-wrap');
+  if(!wrap) return;
+  for(let i=0;i<55;i++){
+    const d = document.createElement('div');
+    d.className='rain-drop';
+    d.style.cssText=`
+      left:${Math.random()*100}%;
+      width:${Math.random()>0.7?2:1}px;
+      height:${55+Math.random()*40}px;
+      animation-delay:${Math.random()*4}s;
+      animation-duration:${0.55+Math.random()*0.7}s;
+      opacity:${0.03+Math.random()*0.07};
+    `;
+    wrap.appendChild(d);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   TICKER
+───────────────────────────────────────────── */
+function buildTicker(){
+  const items = [
+    "Free shipping over $140","✦","10% to frontline missions",
+    "✦","Performance-grade fabrics","✦","Worn by the remnant",
+    "✦","Servant. Prophet. Athlete.","✦","Gothic Athletic Streetwear for Christ","✦"
+  ];
+  const wrap = document.getElementById('ticker-inner');
+  if(!wrap) return;
+  // Duplicate for seamless loop
+  [...items,...items].forEach(t=>{
+    const s = document.createElement('span');
+    s.className = t==='✦'?'ticker-dot':'ticker-item';
+    s.textContent = t;
+    wrap.appendChild(s);
+  });
+}
+
+/* ─────────────────────────────────────────────
+   PRODUCT CARDS
+───────────────────────────────────────────── */
+function buildProductCard(p){
+  return `
+  <div class="product-card reveal" data-product-id="${p.id}">
+    <div class="card-img">
+      <div class="card-rain"></div>
+      <div class="card-img-icon">${p.icon}</div>
+      <svg class="card-cross" width="28" height="40" viewBox="0 0 28 40" fill="none">
+        <rect x="11" y="0" width="6" height="40" fill="#C0C0C0"/>
+        <rect x="0" y="11" width="28" height="6" fill="#C0C0C0"/>
+      </svg>
+      <div class="card-tag ${p.tag}">${p.tagLabel}</div>
+      <div class="card-price">$${p.price}</div>
+    </div>
+    <div class="card-body">
+      <div class="card-sub">${p.sub}</div>
+      <div class="card-name">${p.name}</div>
+      <div class="card-prophetic">${p.prophetic.substring(0,80)}…</div>
+      <div class="card-verse">${p.verse}</div>
+      <button class="card-btn">View + Wear →</button>
+    </div>
+    <div class="card-bottom-accent"></div>
+  </div>`;
+}
+
+function renderProducts(target, list){
+  const el = document.getElementById(target);
+  if(!el) return;
+  el.innerHTML = list.map(buildProductCard).join('');
+  el.querySelectorAll('.product-card').forEach((card)=>{
+    card.setAttribute('role','button');
+    card.setAttribute('tabindex','0');
+    const productName = card.querySelector('.card-name')?.textContent || 'product';
+    card.setAttribute('aria-label', `Open details for ${productName}`);
+    card.addEventListener('click', ()=>{
+      const id = Number(card.dataset.productId);
+      openModal(id);
+    });
+  });
+  initReveal();
+}
+
+/* ─────────────────────────────────────────────
+   FILTER
+───────────────────────────────────────────── */
+function filterProducts(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const list = cat==='all' ? products : products.filter(p=>p.category===cat);
+  renderProducts('shop-products', list);
+}
+
+/* ─────────────────────────────────────────────
+   MODAL
+───────────────────────────────────────────── */
+function openModal(id){
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  lastFocusedElement = document.activeElement;
+  currentProduct = p;
+  selectedSize = 'S';
+  document.querySelectorAll('.size-opt:not(.oos)').forEach((s)=>{
+    s.classList.toggle('active', s.textContent === 'S');
+  });
+  document.getElementById('modal-icon').textContent = p.icon;
+  document.getElementById('modal-sub').textContent = p.sub.toUpperCase();
+  document.getElementById('modal-name').textContent = p.name;
+  document.getElementById('modal-price').textContent = '$'+p.price+'.00';
+  document.getElementById('modal-prophetic').textContent = p.prophetic;
+  document.getElementById('modal-verse').textContent = p.verse;
+  document.getElementById('modal-specs').innerHTML = p.specs.map(s=>`<li>${s}</li>`).join('');
+  const modal = document.getElementById('product-modal');
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  document.querySelector('.modal-close')?.focus();
+}
+function closeModal(){
+  const modal = document.getElementById('product-modal');
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+  if(lastFocusedElement && typeof lastFocusedElement.focus === 'function'){
+    lastFocusedElement.focus();
+  }
+}
+function selectSize(el){
+  document.querySelectorAll('.size-opt:not(.oos)').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+  selectedSize = el.textContent;
+}
+function selectSwatch(el){
+  document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+}
+
+/* ─────────────────────────────────────────────
+   CART
+───────────────────────────────────────────── */
+function addToCart(){
+  if(!currentProduct) return;
+  const existing = cart.find(i=>i.id===currentProduct.id&&i.size===selectedSize);
+  if(existing){ existing.qty++; }
+  else { cart.push({...currentProduct, qty:1, size:selectedSize}); }
+  renderCart();
+  closeModal();
+  showToast(`${currentProduct.name} added to your Watch.`);
+}
+function removeFromCart(id, size){
+  cart = cart.filter(i=>!(i.id===id&&i.size===size));
+  renderCart();
+}
+function renderCart(){
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cart-count').textContent = count;
+  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  document.getElementById('cart-total').textContent='$'+total.toFixed(0);
+  const el = document.getElementById('cart-items');
+  if(cart.length===0){
+    el.innerHTML='<div class="cart-empty">"Consider the ravens: they neither sow nor reap."<br><br>Your watch is empty.<br>The arsenal awaits.</div>';
+  } else {
+    el.innerHTML = cart.map(i=>`
+      <div class="cart-item">
+        <div class="cart-item-img">${i.icon}</div>
+        <div>
+          <div class="cart-item-name">${i.name}</div>
+          <div class="cart-item-meta">Size: ${i.size} · Qty: ${i.qty}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+          <div class="cart-item-price">$${(i.price*i.qty)}</div>
+          <button class="cart-item-remove" onclick="removeFromCart(${i.id},'${i.size}')">✕</button>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+function toggleCart(){
+  const drawer = document.getElementById('cart-drawer');
+  const overlay = document.getElementById('cart-overlay');
+  const toggleBtn = document.getElementById('cart-toggle-btn');
+  drawer.classList.toggle('open');
+  overlay.classList.toggle('open');
+  const isOpen = drawer.classList.contains('open');
+  drawer.setAttribute('aria-hidden', String(!isOpen));
+  overlay.setAttribute('aria-hidden', String(!isOpen));
+  if(toggleBtn) toggleBtn.setAttribute('aria-expanded', String(isOpen));
+}
+
+/* ─────────────────────────────────────────────
+   PAGES
+───────────────────────────────────────────── */
+function showPage(id){
+  const target = document.getElementById('page-'+id);
+  if(!target) return;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  target.classList.add('active');
+  // Activate nav link
+  const links = {home:0,shop:1,vision:2,events:3,about:4};
+  const navLinks = document.querySelectorAll('.nav-link');
+  if(links[id]!==undefined) navLinks[links[id]].classList.add('active');
+  window.scrollTo({top:0,behavior:'auto'});
+  setTimeout(initReveal,100);
+  // Build products on demand
+  if(id==='shop' && !document.getElementById('shop-products').children.length){
+    renderProducts('shop-products', products);
+  }
+}
+
+function Maps(pageId, element, event){
+  if(event) event.preventDefault();
+  showPage(pageId);
+  if(element && element.classList && element.classList.contains('nav-link')){
+    document.querySelectorAll('.nav-link').forEach((l)=>l.classList.remove('active'));
+    element.classList.add('active');
+  }
+}
+
+/* ─────────────────────────────────────────────
+   SCROLL REVEAL
+───────────────────────────────────────────── */
+function initReveal(){
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add('revealed');
+    });
+  },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal:not(.revealed)').forEach(el=>obs.observe(el));
+}
+
+/* ─────────────────────────────────────────────
+   TOAST
+───────────────────────────────────────────── */
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+/* ─────────────────────────────────────────────
+   NAV SCROLL
+───────────────────────────────────────────── */
+window.addEventListener('scroll',()=>{
+  const nav = document.getElementById('nav');
+  nav.classList.toggle('scrolled', window.scrollY>60);
+  // Progress
+  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+  document.getElementById('progress').style.width = pct+'%';
+});
+
+/* ─────────────────────────────────────────────
+   CUSTOM CURSOR
+───────────────────────────────────────────── */
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+});
+function animRing(){
+  rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('button,a,.product-card,.nav-link,.pillar,.servant-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+});
+
+/* ─────────────────────────────────────────────
+   KEYBOARD
+───────────────────────────────────────────── */
+document.addEventListener('keydown',e=>{
+  if((e.key==='Enter' || e.key===' ') && e.target && e.target.matches('[role="button"]')){
+    e.preventDefault();
+    e.target.click();
+  }
+  if(e.key==='Escape'){
+    closeModal();
+    if(document.getElementById('cart-drawer').classList.contains('open')) toggleCart();
+  }
+});
+
+/* ─────────────────────────────────────────────
+   INIT
+───────────────────────────────────────────── */
+buildRain();
+buildTicker();
+renderProducts('home-products', products.slice(0,3));
+renderCart();
+initReveal();
+document.querySelectorAll('.footer-links li').forEach((item)=>{
+  item.setAttribute('role','button');
+  item.setAttribute('tabindex','0');
+});
+
+// Live cursor hover updates for dynamically added elements
+document.addEventListener('mouseenter',e=>{
+  if(e.target.matches('button,a,.product-card,.pillar,.servant-card'))
+    document.body.classList.add('cursor-hover');
+},{capture:true});
+document.addEventListener('mouseleave',e=>{
+  if(e.target.matches('button,a,.product-card,.pillar,.servant-card'))
+    document.body.classList.remove('cursor-hover');
+},{capture:true});
+</script>
+</body>
+</html>
